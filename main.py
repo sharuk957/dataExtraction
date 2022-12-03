@@ -1,14 +1,21 @@
+import os
 import requests
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 '''get data one by one'''
 
+
+URL = os.getenv('URL')
 while True:
     id = input("enter the id for fetching data or enter '0000' to exit : ")
     if id == '0000':
         break
     else:
-        response = requests.get(f"url={id}")
+        response = requests.get(f"{URL}={id}")
         if response.status_code == 200:
             values = response.json()
             apps_data = values['apps']
